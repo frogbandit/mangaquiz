@@ -7,28 +7,58 @@
     <!--   <div class="panel"> -->
 
 
-<h1><strong>How well do you know manga?</strong></h1>
+<h1><strong>Which manga is this?</strong></h1>
 {% if api_data %}
   
-  <h3><em><img src = "static/img/manga.jpg"></img></em></h3>
+  <h3><em><img src = "static/img/manga1.jpg"></img></em></h3>
 
-  <form>
-    Title:<br>
-    <input type="text" name="title">
-  <br>
-    Artist:<br>
-    <input type="text" name="artist">
-  </form>
+{% set title_array = api_data.get('titles') %}
+    <p>
+    <ul>
+    <li><label><input type="radio" class="btn btn-default" name="q1" value="right"> {{ title_array[0] }}</label></li>
+    <li><label><input type="radio" class="btn btn-default" name="q1" value="wrong"> {{ title_array[1] }}</label></li>
+    <li><label><input type="radio" class="btn btn-default" name="q1" value="wrong"> {{ title_array[2] }}</label></li>
+    <li><label><input type="radio" class="btn btn-default" name="q1" value="wrong"> {{ title_array[3] }}</label></li>
+    </ul>
+    
+<button id="check">Check your answer!</button>
+<p id="answer"></p>
+<script type="text/javascript">
 
-  <h3> Title: {{ api_data.get('title')}} </h3>
-  <h3> Artist: {{ api_data.get('artist')}} </h3>
+    var ul = document.querySelector('ul');
+    for (var i = ul.children.length; i >= 0; i--) {
+        ul.appendChild(ul.children[Math.random() * i | 0]);
+    }
 
-  <p>
+    document.getElementById("check").onclick = validate;
+    
+    function validate() {
+    var title = document.getElementsByName("q1");
+
+    var answer;
+    for (var i = 0; i < title.length; i++) {
+        if (title[i].checked === true) {
+            answer = title[i].value;
+            break
+        }
+    }
+    if (answer == "right") {
+        document.getElementById("answer").innerHTML = "<h3>You're right!</h3>"
+        // alert("You're right!")
+    } else {
+        document.getElementById("answer").innerHTML = "<h3>Wrong! Try again.</h3>"
+        // alert("Wrong! Try again.")
+    }
+};
+
+</script>
 {% else %}
   <h1>Oops!</h1>
 {% endif %}
 
-
+  <p>
+  <p>
+  <p>
     <!-- <a class="round button" href="/">More manga!</a> -->
     <a class = "round button" HREF="javascript:history.go(0)">More manga!</A>
   <!-- </div> -->
