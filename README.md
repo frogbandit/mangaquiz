@@ -1,3 +1,3 @@
-# ronswanson
-A silly Ron Swanson hack. 
+# Manga Quiz
+A (pretty hard) manga quiz.
 Made with love by James.
