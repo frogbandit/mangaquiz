@@ -43,7 +43,6 @@ def hello():
 		image_url = "https://cdn.mangaeden.com/mangasimg/" + image[1]
 		print "image url: ", image_url
 
-		# urllib.urlretrieve("" + image_url, "static/img/manga.jpg")
 		r = requests.get("" + image_url)
 		with open('static/img/manga.jpg','wb') as f:
 			f.write(r.content)
