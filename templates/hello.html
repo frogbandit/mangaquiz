@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}How well do you know manga?{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="medium-9 medium-centered columns">
+    <!--   <div class="panel"> -->
+
+
+<h1><strong>How well do you know manga?</strong></h1>
+{% if api_data %}
+  
+  <h3><em><img src = "static/img/manga.jpg"></img></em></h3>
+
+  <form>
+    Title:<br>
+    <input type="text" name="title">
+  <br>
+    Artist:<br>
+    <input type="text" name="artist">
+  </form>
+
+  <h3> Title: {{ api_data.get('title')}} </h3>
+  <h3> Artist: {{ api_data.get('artist')}} </h3>
+
+  <p>
+{% else %}
+  <h1>Oops!</h1>
+{% endif %}
+
+
+    <!-- <a class="round button" href="/">More manga!</a> -->
+    <a class = "round button" HREF="javascript:history.go(0)">More manga!</A>
+  <!-- </div> -->
+  <p>
+  <p>
+  <h5>Made with love by <a href = "http://www.james-xue.com"/>James</a>.</h5>
+  </div>
+</div>
+
+{% endblock %}
